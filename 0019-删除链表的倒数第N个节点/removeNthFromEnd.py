@@ -15,3 +15,20 @@ def removeNthFromEnd(head, n):
     cur.next = cur.next.next
 
     return dummy.next
+
+def removeNthFromEnd_2(self, head: ListNode, n: int) -> ListNode:
+        dummy = ListNode(0)
+        dummy.next = head
+        first = head
+        second = dummy
+        for i in range(n):
+            first = first.next
+
+        # 快指针first走到链表末尾，慢指针刚好走到倒数第n个节点
+        while first:
+            first = first.next
+            second = second.next
+        
+        # 删除倒数第n个节点
+        second.next = second.next.next
+        return dummy.next
